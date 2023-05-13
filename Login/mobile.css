@@ -1,0 +1,10 @@
+@media screen and (max-width: 425px) {
+    h1 {
+    font-size: 30px;
+    }
+    .input_block input {
+    max-width: 250px;
+    width: 80vw;
+    font-size: 0.8em;
+    }
+    }

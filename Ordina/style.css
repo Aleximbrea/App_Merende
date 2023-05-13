@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
+* {
+  font-family: 'Playfair Display', serif;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-attachment: fixed;
+}
+
+#titolo {
+  display: flex;
+  margin-top: 10px;
+  font-family: 'Parisienne', cursive;
+  font-size: 50px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.tab {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-left: 20px;
+}
+
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url("../other/img/carta2.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  padding: 0 5vw;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Stili per i pulsanti del tab */
+.tab button {
+  background: transparent;
+  font-weight: 550;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 12px 40px;
+  transition: all 0.3s ease-in-out;
+  font-size: 25px;
+  color: #33333369;
+  box-shadow: 0 2px #33333369;
+  font-family: 'Courgette', cursive;
+}
+
+/* Stili per i pulsanti del tab quando il mouse ci passa sopra */
+.tab button:hover {
+  color: #333;
+}
+
+/* Cambia il colore del pulsante quando è selezionato */
+.tab button.active {
+  color: #333;
+  box-shadow: 0 2px #333;
+}
+
+/* Stili per il contenuto del tab */
+.tabcontent {
+  display: none;
+  padding: 24px;
+  border: none;
+
+}
+
+.card {
+  background-color: #FFF;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 10px;
+  overflow: hidden;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+.prezzo {
+  font-style: italic;
+  font-weight: 700;
+  color: #333;
+}
+
+.card-toggle {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card-list {
+  padding: 20px;
+  display: none;
+}
+
+.card.open .card-header {
+  background-color: #FFF;
+  color: #333;
+}
+
+.card.open .card-toggle {
+  transform: rotate(45deg);
+}
+
+.card.open .card-list {
+  display: block;
+}
+
+.quantity {
+  font-size: 1.5rem;
+}
+
+.subcard {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  color: #333;
+}
+
+.total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.4rem;
+  width: 15vw;
+}
+
+.completa_ordine {
+  max-width: 30vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #FFF;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+.completa_ordine button {
+  background-color: rgba(4, 216, 4, 0.804);
+  border: 1px solid gray;
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 15px;
+  font-weight: 700;
+}
+
+.completa_ordine button:hover {
+  background-color: rgb(4, 216, 4);
+}
+
+.persona {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+.person {
+  display: flex;
+  width: fit-content;
+  flex-direction: column;
+  border: none;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.person_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.person h2 {
+  align-items: center;
+  text-align: center;
+}
+
+.person table {
+  border-collapse: collapse;
+  width: fit-content;
+}
+
+.person table th,
+.person table td {
+  border: none;
+  padding: 5px;
+  text-align: center;
+}
+
+.totale {
+  margin-left: 40px;
+  position:relative;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.4rem;
+  width: 15vw;
+}
+
+.sidenav .scelta:hover {
+  color: #372f27c7;
+}
+
+/* Stili per la navbar */
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #e5ad78;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #5e5e5e;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav p {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 30px;
+  color: #1a1a1a;
+  display: block;
+}
+
+.sidenav #esci:hover {
+  color: #cf4444;
+}
+
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Stili per l'icona della navbar */
+.navbar-icon {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+}
+
+/* Stili per l'icona della navbar quando si passa il mouse sopra */
+.navbar-icon:hover {
+  background-color: #ddd;
+}

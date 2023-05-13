@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+* {
+  font-family: 'Playfair Display', serif;
+  top: 0;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+nav {
+  background-color: #F7D3B6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1%;
+}
+
+#title {
+  padding-left: 15%;
+  margin: 0;
+  font-size: 40px;
+  text-shadow: 2px 2px #B17350;
+  color: #944A35;
+  letter-spacing: 1px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+li {
+  margin-left: 20px;
+}
+
+.btn {
+  text-decoration: none;
+  display: inline-block;
+  margin-left: 20px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  color: #FFF;
+  background-color: #B17350;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #944A35;
+  cursor: pointer;
+}
+
+#background {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url('../other/img/img1.jpg'), url('../other/img/img2.jpg'), url('../other/img/img3.jpg');
+  background-size: cover;
+  background-position: center;
+  animation: slideshow 12s infinite;
+}
+
+@keyframes slideshow {
+  0% {
+    background-image: url('../other/img/img1.jpg');
+  }
+
+  33% {
+    background-image: url('../other/img/img2.jpg');
+  }
+
+  66% {
+    background-image: url('../other/img/img3.jpg');
+  }
+}
+
+#testo {
+  margin-top: 10vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1.testo {
+  font-size: 36px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  text-shadow: 2px 2px #B17350;
+}
+
+h2.testo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  text-shadow: 2px 2px #B17350;
+  margin-top: 20px;
+}
+
+p.testo {
+  font-size: 18px;
+  color: #FFFFFF;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.button2 {
+  display: inline-block;
+  margin-top: 60px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: #B17350;
+  background-color: #FFFFFF;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button2:hover {
+  background-color: #B17350;
+  color: #FFFFFF;
+  cursor: pointer;
+}

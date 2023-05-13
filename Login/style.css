@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+* {
+  font-family: 'Playfair Display', serif;
+  top: 0;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F9E7D8;
+  background-image: url('../other/img/img1.jpg'), url('../other/img/img2.jpg'), url('../other/img/img3.jpg');
+  background-size: cover;
+  background-position: center;
+  animation: slideshow 12s infinite;
+}
+
+@keyframes slideshow {
+  0% {
+    background-image: url('../other/img/img1.jpg');
+  }
+
+  33% {
+    background-image: url('../other/img/img2.jpg');
+  }
+
+  66% {
+    background-image: url('../other/img/img3.jpg');
+  }
+}
+
+.error_message {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  font-size: 14px;
+  color: red;
+  visibility: visible;
+}
+
+
+form {
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  justify-content: top;
+}
+
+h1 {
+  font-size: 40px;
+  text-shadow: 2px 2px #B17350;
+  color: #944A35;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+}
+
+
+.input_block {
+  position: relative;
+  margin: 15px 0;
+}
+
+#eye {
+  position: absolute;
+  top: 28%;
+  right: 4%;
+  cursor: pointer;
+  color: #944A35;
+}
+
+.input_block label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #944A35;
+  font-weight: 600;
+  padding: 0 5px;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.input_block input {
+  max-width: 300px;
+  width: 55vw;
+  height: 40px;
+  font-size: 1em;
+  padding: 0 10px;
+  background: transparent;
+  border: 1.2px solid gray;
+  outline: none;
+  border-radius: 5px;
+  color: black;
+  font-weight: 500;
+  font-family: 'Lato', sans-serif;
+}
+
+.input_block input:focus~label,
+.input_block input:valid~label {
+  top: 0;
+  font-size: 12px;
+  background: #FFFFFF;
+}
+
+input[type="submit"] {
+  padding: 12px 24px;
+  border: none;
+  margin-top: 10px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  color: #FFF;
+  background-color: #B17350;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #944A35;
+}
+
+p {
+  font-size: 18px;
+  margin-top: 20px;
+  color: #944A35;
+}

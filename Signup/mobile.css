@@ -1,0 +1,41 @@
+@media only screen and (max-width: 425px) {
+  
+    form {
+      width: 90%;
+      padding: 10px;
+    }
+  
+    h1 {
+      font-size: 30px;
+    }
+  
+    .input_block input {
+      max-width: 100%;
+      width: 100%;
+    }
+  
+    .input_block #class,
+    .input_block #gender {
+      max-width: 100%;
+      margin-right: 10px;
+    }
+  
+    .space {
+      display: none;
+    }
+  
+    #eye {
+      right: 10px;
+    }
+  
+  }
+
+  @media only screen and (max-width: 425px) {
+    #nome_cogn{
+        flex-direction: column;
+        }
+    #class {
+        width: 50px;
+    }
+  }
+  
