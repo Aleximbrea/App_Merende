@@ -45,8 +45,9 @@ $utente = $res->fetch_assoc();
     <p>
       <?php echo $utente['Nome'] . ' ' . $utente['Cognome'] ?>
     </p>
+    <a href="index.php" class='scelta'>Ordina</a>
+    <a href="IMieiOrdini.php" class='scelta'>I Miei Ordini</a>
     <a href="#" onclick="logout()" id="esci">Esci</a>
-    <!-- <a href="#" id='cambia'>Cambia classe</a> -->
   </div>
   <div id="background"></div>
   <div class="tab">
@@ -288,15 +289,6 @@ $utente = $res->fetch_assoc();
       }
       document.getElementById(tabName).style.display = "block";
       evt.currentTarget.className += " active";
-    }
-    // Funzione per aprire la navbar
-    function openNav() {
-      document.getElementById("mySidenav").style.width = "250px";
-    }
-
-    // Funzione per chiudere la navbar
-    function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
     }
     // Apri il primo tab per default
     document.getElementById("Tab1").style.display = "block";
