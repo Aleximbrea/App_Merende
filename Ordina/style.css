@@ -231,6 +231,10 @@ body {
   width: 15vw;
 }
 
+.venditore {
+  font-weight: 600;
+}
+
 .annulla span {
   margin-right: 20px;
   color: red;

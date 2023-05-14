@@ -170,7 +170,7 @@ $utente = $res->fetch_assoc();
     $venditori_classe = $res->fetch_all(MYSQLI_ASSOC);
     $res->free();
     ?>
-    <h1 style="margin-bottom: 30px;">Lista delle merende della classe
+    <h1 style="margin-bottom: 30px;">Lista merende della classe
       <?php echo $classe_studente['Classe'] ?>
     </h1>
     <?php

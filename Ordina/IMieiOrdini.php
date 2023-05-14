@@ -72,38 +72,87 @@ foreach ($orari as $orario) {
     <div id="background"></div>
     <?php
     // Tutti gli ordini effettuati dallo studnete loggato
-    $sql = 'SELECT prodotti.ID, venditori.Nome, prodotti.Nome, ordini.ID AS IDOrdine, ordini.Quantita, ordini.Totale FROM ordini, prodotti, venditori WHERE venditori.ID = ordini.IDVenditore AND prodotti.ID = ordini.IDProdotto AND ordini.IDStudente = ? AND ordini.Ora > ? AND ordini.Ora < ?';
+    $sql = 'SELECT prodotti.ID, venditori.Nome AS Venditore, prodotti.Nome, ordini.ID AS IDOrdine, ordini.Quantita, ordini.Totale FROM ordini, prodotti, venditori WHERE venditori.ID = ordini.IDVenditore AND prodotti.ID = ordini.IDProdotto AND ordini.IDStudente = ? AND ordini.Ora > ? AND ordini.Ora < ?';
     $res = sqlSelect($dbh, $sql, 'iii', $_SESSION['userID'], $past_deadline, $deadline);
     $prodotti = $res->fetch_all(MYSQLI_ASSOC);
     ?>
-    <div class="card open">
-        <div class="card-content">
-            <div class="card-list">
-                <?php foreach ($prodotti as $prodotto) { ?>
-                    <div class="card">
-                        <div class="subcard">
-                            <div class="descrizione">
-                                <h2 class="prodotto">
-                                    <?php echo $prodotto['Nome'] ?>
-                                </h2>
-                                <div class="quantita">
-                                    <span>Quantità: </span>
-                                    <span id="quantita<?php echo $prodotto['ID'] ?>"><?php echo $prodotto['Quantita'] ?></span>
-                                </div>
-                                <div class="prezzo">
-                                    <span>Prezzo: </span>
-                                    <span id="prezzo<?php echo $prodotto['ID'] ?>"><?php echo $prodotto['Totale'] ?></span>
-                                    <span>€</span>
-                                </div>
-                            </div>
-                            <div class="annulla">
-                                <span onclick="annullaOrdine(event, <?php echo $prodotto['IDOrdine'] ?>)">Annulla
-                                    Ordine</span>
-                            </div>
-                        </div>
+    <?php foreach ($prodotti as $prodotto) { ?>
+        <div class="card" style="margin: 20px;">
+            <div class="subcard">
+                <div class="descrizione">
+                    <h2 class="prodotto">
+                        <?php echo $prodotto['Nome'] ?>
+                    </h2>
+                    <div class="venditore">
+                        <span>Venditore: </span>
+                        <span>
+                            <?php echo $prodotto['Venditore'] ?>
+                        </span>
                     </div>
-                <?php } ?>
+                    <div class="quantita">
+                        <span>Quantità: </span>
+                        <span id="quantita<?php echo $prodotto['ID'] ?>"><?php echo $prodotto['Quantita'] ?></span>
+                    </div>
+                    <div class="prezzo">
+                        <span>Prezzo: </span>
+                        <span id="prezzo<?php echo $prodotto['ID'] ?>"><?php echo $prodotto['Totale'] ?></span>
+                        <span>€</span>
+                    </div>
+                </div>
+                <div class="annulla">
+                    <span onclick="annullaOrdine(event, <?php echo $prodotto['IDOrdine'] ?>)">Annulla
+                        Ordine</span>
+                </div>
             </div>
+        </div>
+    <?php } ?>
+    <div class="header">
+        <center>
+            <h1 id="titolo">Cronologia Ordini</h1>
+        </center>
+    </div>
+    <?php
+    // Tutti gli ordini effettuati dallo studnete loggato
+    $sql = 'SELECT prodotti.ID, venditori.Nome AS Venditore, prodotti.Nome, ordini.ID AS IDOrdine, ordini.Ora, ordini.Quantita, ordini.Totale FROM ordini, prodotti, venditori WHERE venditori.ID = ordini.IDVenditore AND prodotti.ID = ordini.IDProdotto AND ordini.IDStudente = ? AND ordini.Ora < ?';
+    $res = sqlSelect($dbh, $sql, 'ii', $_SESSION['userID'], $past_deadline);
+    $prodotti = $res->fetch_all(MYSQLI_ASSOC);
+    ?>
+    <?php foreach ($prodotti as $prodotto) { ?>
+        <div class="card" style="margin: 20px;">
+            <div class="subcard">
+                <div class="descrizione">
+                    <h2 class="prodotto">
+                        <?php echo $prodotto['Nome'] ?>
+                    </h2>
+                    <div class="venditore">
+                        <span>Venditore: </span>
+                        <span>
+                            <?php echo $prodotto['Venditore'] ?>
+                        </span>
+                    </div>
+                    <div class="quantita">
+                        <span>Quantità: </span>
+                        <span id="quantita<?php echo $prodotto['ID'] ?>"><?php echo $prodotto['Quantita'] ?></span>
+                    </div>
+                    <div class="prezzo">
+                        <span>Prezzo: </span>
+                        <span id="prezzo<?php echo $prodotto['ID'] ?>"><?php echo $prodotto['Totale'] ?></span>
+                        <span>€</span>
+                    </div>
+                </div>
+                <div class="annulla">
+                    <p>Data ordine:</p>
+                    <span style="color: #222; font-weight: 700;">
+                        <?php
+                        $time = $prodotto['Ora'];
+                        $data_normale = date('d-m-Y H:i:s', $time); // Converti Unix timestamp in data normale
+                        echo $data_normale; // Output: 2021-05-12 12:19:40
+                        ?>
+                    </span>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../other/js/script.js"></script>
