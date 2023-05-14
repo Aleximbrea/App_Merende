@@ -464,3 +464,23 @@ function modificaProdotto(event, id_prodotto) {
     }
   );
 }
+
+function annullaOrdine(event, id_ordine) {
+  // Per eliminare un prodotto dal database passo l'id del prodotto alla funzione js che tramite richiesta ajax lo mandera
+  // a una funzione php
+  event.preventDefault();
+  array_id = {
+    id: id_ordine,
+  };
+  // Trasformo in dati json
+  var json_arr = JSON.stringify(array_id);
+  json_request(
+    "../other/php/eliminaOrdine.php",
+    json_arr,
+    function (errors) {
+      if (errors == "Delete riuscito") {
+        location.reload();
+      }
+    }
+  );
+}

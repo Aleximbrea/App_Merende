@@ -231,6 +231,11 @@ body {
   width: 15vw;
 }
 
+.annulla span {
+  margin-right: 20px;
+  color: red;
+}
+
 .sidenav .scelta:hover {
   color: #372f27c7;
 }

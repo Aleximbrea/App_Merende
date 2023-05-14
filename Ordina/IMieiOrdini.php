@@ -9,13 +9,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     header('Location: ../');
 }
 $dbh = connect();
-    // Nome e cognome dell'utente loggato
-    $res = sqlSelect($dbh, 'SELECT Nome, Cognome from studenti where ID = ?', 'i', $_SESSION['userID']);
-    $utente = $res->fetch_assoc();
+// Nome e cognome dell'utente loggato
+$res = sqlSelect($dbh, 'SELECT Nome, Cognome from studenti where ID = ?', 'i', $_SESSION['userID']);
+$utente = $res->fetch_assoc();
 ?>
 <html lang="en">
 
 <head>
+    <meta name="csrf_token" content="<?php echo createToken(); ?>" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,27 +25,6 @@ $dbh = connect();
     <script src="https://kit.fontawesome.com/48c9af8c84.js" crossorigin="anonymous"></script>
     <title>I Miei Ordini</title>
 </head>
-
-<body>
-    <div class="header">
-        <center>
-            <h1 id="titolo">Ordini in corso</h1>
-        </center>
-        <div class="navbar-icon" onclick="openNav()">
-            <i class="fas fa-bars"></i>
-        </div>
-    </div>
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <p>
-            <?php echo $utente['Nome'] . ' ' . $utente['Cognome'] ?>
-        </p>
-        <a href="index.php" class='scelta'>Ordina</a>
-        <a href="IMieiOrdini.php" class='scelta'>I Miei Ordini</a>
-        <a href="#" onclick="logout()" id="esci">Esci</a>
-    </div>
-    <div id="background"></div>
-</body>
 <?php
 
 $today = date('Y-m-d'); // data corrente
@@ -70,6 +50,61 @@ foreach ($orari as $orario) {
     }
 }
 ?>
+
+<body>
+    <div class="header">
+        <center>
+            <h1 id="titolo">Ordini in corso</h1>
+        </center>
+        <div class="navbar-icon" onclick="openNav()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <p>
+            <?php echo $utente['Nome'] . ' ' . $utente['Cognome'] ?>
+        </p>
+        <a href="index.php" class='scelta'>Ordina</a>
+        <a href="IMieiOrdini.php" class='scelta'>I Miei Ordini</a>
+        <a href="#" onclick="logout()" id="esci">Esci</a>
+    </div>
+    <div id="background"></div>
+    <?php
+    // Tutti gli ordini effettuati dallo studnete loggato
+    $sql = 'SELECT prodotti.ID, venditori.Nome, prodotti.Nome, ordini.ID AS IDOrdine, ordini.Quantita, ordini.Totale FROM ordini, prodotti, venditori WHERE venditori.ID = ordini.IDVenditore AND prodotti.ID = ordini.IDProdotto AND ordini.IDStudente = ? AND ordini.Ora > ? AND ordini.Ora < ?';
+    $res = sqlSelect($dbh, $sql, 'iii', $_SESSION['userID'], $past_deadline, $deadline);
+    $prodotti = $res->fetch_all(MYSQLI_ASSOC);
+    ?>
+    <div class="card open">
+        <div class="card-content">
+            <div class="card-list">
+                <?php foreach ($prodotti as $prodotto) { ?>
+                    <div class="card">
+                        <div class="subcard">
+                            <div class="descrizione">
+                                <h2 class="prodotto">
+                                    <?php echo $prodotto['Nome'] ?>
+                                </h2>
+                                <div class="quantita">
+                                    <span>Quantità: </span>
+                                    <span id="quantita<?php echo $prodotto['ID'] ?>"><?php echo $prodotto['Quantita'] ?></span>
+                                </div>
+                                <div class="prezzo">
+                                    <span>Prezzo: </span>
+                                    <span id="prezzo<?php echo $prodotto['ID'] ?>"><?php echo $prodotto['Totale'] ?></span>
+                                    <span>€</span>
+                                </div>
+                            </div>
+                            <div class="annulla">
+                                <span onclick="annullaOrdine(event, <?php echo $prodotto['IDOrdine'] ?>)">Annulla
+                                    Ordine</span>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+</body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../other/js/script.js"></script>
 
